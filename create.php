@@ -20,17 +20,30 @@ if ($input) {
 }
 
 // 3.データベースへの接続準備.各種項目設定。データベース、ユーザー名、PWの確認
-$dbn ='mysql:dbname=balubo_db;charset=utf8mb4;port=3306;host=localhost';
-$user = 'root';
-$pwd = '';
+// $dbn ='mysql:dbname=balubo_db;charset=utf8mb4;port=3306;host=localhost';
+// $user = 'root';
+// $pwd = '';
 
 // 4.データベースへの接続
 try {
-    $pdo = new PDO($dbn, $user, $pwd);
-  } catch (PDOException $e) {
-    echo json_encode(["db error" => "{$e->getMessage()}"]);
-    exit();
-  }
+  // データベース名。一旦削除
+  // ホスト名
+  // データベース名と同じ
+  // 設定したデータベースパスワード
+  
+  // 接続文字列を1つにまとめる
+  $dsn = "mysql:dbname={$db_name};charset=utf8mb4;host={$db_host}";
+
+    // PDOインスタンスを作成
+    $pdo = new PDO($dsn, $db_id, $db_pw);
+    
+    // エラーモードを設定
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+} catch (PDOException $e) {
+    exit('データベース接続エラー：' . $e->getMessage());
+}
+
 
 // 5.SQLの準備
 // 修正後のコード
@@ -59,8 +72,8 @@ if ($input) {
   // Google認証の場合はJSON形式でレスポンス
   echo json_encode(['success' => true]);
 } else {
-  // 通常フォームの場合は既存のリダイレクト
-  header('Location:input.php');
+  // 通常フォームの場合はread.phpにリダイレクト
+  header('Location: read.php');
 }
 exit();
 

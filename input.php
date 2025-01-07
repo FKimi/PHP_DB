@@ -18,7 +18,6 @@
                 <h1>baluboにようこそ！</h1>
                 <p>クリエイターの可能性を解き放つ場所</p>
             </section>
-
         <section class="signup-section">
                 <div class="signup-box">
                     <h2>baluboに登録</h2>
@@ -43,12 +42,13 @@
                         <input type="text" name="pw" placeholder="パスワード" required>
                         <span class="password-hint">※半角英数含む6-18文字</span>
                     </div>
-                    <form action="profile.php" method="POST">
+                    <!-- <form action="read.php" method="POST">-->
                         <button type="submit" class="submit-btn">新規登録</button>
                 </div>
             </section>
         </form>
     </main>
+
     <!-- Firebase関連のスクリプト -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";

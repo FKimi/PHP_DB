@@ -7,10 +7,18 @@ $pwd = '';
 
 // 1.2 PDOを使って実際に接続を試みる。接続に失敗した場合はエラーメッセージを表示して処理を終了
 try {
-  $pdo = new PDO($dbn, $user, $pwd);
+  $db_name = 'fuuu_profile_table';  // データベース名
+  $db_host = 'mysql3104.db.sakura.ne.jp';  
+  $db_id   = 'fuuu_profile_table';      // データベース名と同じ
+  $db_pw   = '134097Fu';      // 設定したデータベースパスワード
+  
+  $pdo = new PDO(
+      'mysql:dbname=' . $db_name . ';charset=utf8;host=' . $db_host,
+      $db_id,
+      $db_pw
+  );
 } catch (PDOException $e) {
-  echo json_encode(["db error" => "{$e->getMessage()}"]);
-  exit();
+  exit('DB Connection Error:' . $e->getMessage());
 }
 
 // 2.データの取得準備（id, name, email, dateofbirth,username,occupation,created_at, updated_at）
